@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Proyecto API</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body class="blue-grey">
+
+    <nav class="blue-grey">
+        <div class="nav-wrapper">
+          <a id="arriba" href="#" class="brand-logo">Noticias</a>
+          <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li>
+                <a href="#arriba">home</a>
+            </li>
+            <li>
+                <a href="#!">Log out</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+    <!---------------------------SIDENAV----------------------------------->
+    
+
+    <ul id="slide-out" class="sidenav">
+      <li>
+              <div class="background">
+                  <img src="https://media.gettyimages.com/photos/the-headline-on-the-april-16-2019-edition-of-the-wall-street-journal-picture-id1146070393?s=2048x2048" class="responsive-img">
+              </div>
+      </li>
+          <li><a href="#arriba"><i class="material-icons">home</i>Inicio</a></li>
+          <li><a href="#Maestros"><i class="material-icons">person</i>Log out</a></li>
+    </ul>
+      
+   
+    <div id="app">  
+
+        <div class="card-panel center teal lighten-2">
+               <div v-if="estado">
+                    <div class="progress">
+                            <div class="indeterminate"></div>
+                    </div>
+               </div>
+            <h5 class="white-text">Todos los artículos publicados por WSJ y NY Times</h5>
+        </div>
+
+            <!---------------------------SLIDER---------------------------------->
+
+        <div class="slider">
+            <ul class="slides">
+              <li>
+                <img src="https://static01.nyt.com/images/2019/12/15/climate/15cli-diplo/15cli-diplo-facebookJumbo-v2.jpg" class="responsive-img" />
+              </li>
+              <li>
+                <img src="https://static01.nyt.com/images/2019/12/18/dining/13Ottorex1-copy/merlin_165659580_9acb122f-39d8-4b9f-923c-31f3514b12f4-facebookJumbo.jpg" class="responsive-img" />
+              </li>
+              <li>
+                <img src="https://static01.nyt.com/images/2019/12/15/multimedia/15xp-handsigns/15xp-handsigns-facebookJumbo.jpg" class="responsive-img" />
+              </li>
+              <li>
+                <img src="https://images.wsj.net/im-133589/social" class="responsive-img" />
+              </li>
+              <li>
+                <img src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAK7pcf.img?h=630&w=1200&m=6&q=60&o=t&l=f&f=jpg&x=834&y=252" class="responsive-img" />
+              </li>
+            </ul>
+          </div>
+
+        <div class="row">
+            <div class="col l10 offset-l1">
+                <div class="card-panel ">
+                    <ul>
+                        <li v-for=" item in articulos">
+                            <img :src="item.urlToImage" class="square" width="40" height="40">
+                            {{item.title}} - {{item.author}} - {{item.publishedAt}}
+                            <button @click="ver_modal(item)" class="btn-floating right"><i class="material-icons">library_books</i></button>
+                            <hr><br>
+                            <br>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal1" class="modal">
+           <div v-if="articulo != null">
+                <div class="modal-content">
+                        <img :src="articulo.urlToImage" class="circle" width="100" height="100">
+                    <h4>{{articulo.title}} - {{articulo.author}} </h4>
+                    <p>{{articulo.description}}</p>
+                    <p class="green">Para mas información visitar: {{articulo.url}}</p>
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Volver</a>
+                </div>
+           </div>
+        </div>
+
+    </div>
+
+    <footer class="page-footer teal lighten-2">
+            <div class="container">
+              <div class="row">
+                <div class="col l6 s12">
+                  <h5 class="white-text">Proyecto API</h5>
+                  <p class="grey-text text-lighten-4">Mantente informado de las noticias mas recientes en esta pagina, en los articulos subidos por WSJ y NY TIMES.</p>
+                  <div class="card-panel">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/The_New_York_Times_Company_logo.svg/1920px-The_New_York_Times_Company_logo.svg.png" class="responsive-img" >
+                     
+                  </div>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                  <h5 class="white-text">Contactos</h5>
+                    <div class="row">
+                        <i class="material-icons left">thumb_up</i>Facebook
+                    </div>
+                    <div class="row">
+                          <i class="material-icons left">favorite</i>Instagram
+                    </div>
+                    <div class="row">
+                          <i class="material-icons left">slideshow</i>Youtube
+                    </div>
+                    <div class="row">
+                          <i class="material-icons left">location_on</i>Avenida Jardin del Este
+                    </div>
+                    <div class="row">
+                          <i class="material-icons left">call</i>+56959280423
+                    </div>
+                    <div class="row">
+                        <i class="material-icons left">email</i>jonathanvalenzuelaortega@gmail.com
+                    </div>
+                    </div>
+                </div>
+              </div>
+              
+            <div class="footer-copyright">
+              <div class="container">
+              © 2019 Copyright todos los derechos reservados
+              <h6 class="grey-text text-lighten-4 right">Create by Jonathan Valenzuela</h6>
+              <a class="grey-text text-lighten-4 right" href="#!"></a>
+              </div>
+            </div>
+          </footer>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                estado:true,
+                articulos:[],
+                url:'https://newsapi.org/v2/everything?domains=wsj.com,nytimes.com&apiKey=cdf153d3c31347c8b607aac4c5986fdf',
+                articulo :null
+            },
+            methods:{
+                async cargar(){
+                    var resultado= await axios.get(this.url);
+                    this.articulos= resultado.data.articles;
+                    console.log(resultado.data);
+                    this.estado=false;
+                },
+                ver_modal(item){
+                    var instance = M.Modal.getInstance(document.getElementById('modal1'))
+                    instance.open();
+                    this.articulo= item;
+                }
+
+            },
+            created(){
+                this.cargar();
+            },
+            mounted(){
+                document.addEventListener('DOMContentLoaded', function() {
+                var elems = document.querySelectorAll('.modal');
+                var instances = M.Modal.init(elems);
+                });
+
+                document.addEventListener("DOMContentLoaded", function() {
+                var elems = document.querySelectorAll(".slider");
+                var instances = M.Slider.init(elems, {
+                indicators: false,
+                height: 600
+                });
+                });
+
+                var elems = document.querySelectorAll('.sidenav');
+                var instances = M.Sidenav.init(elems);
+                
+            }
+        });
+    
+    </script>
+
+</body>
+</html>
